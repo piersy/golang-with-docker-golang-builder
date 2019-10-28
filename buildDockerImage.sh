@@ -5,8 +5,8 @@ CURRENT_DIR="$(pwd)";
 DIRNAME=${CURRENT_DIR##*/}
 
 echo "Pulling docker-golang-builder"
-sudo docker pull "piersy/docker-golang-builder:1.0";
+docker pull "piersy/docker-golang-builder:1.0";
 echo "Building golang_with_docker"
-sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v "${CURRENT_DIR}:/${DIRNAME}" -t "piersy/docker-golang-builder:1.0" bash -c "(cd ${DIRNAME} && go build ) && sudo docker build -t golang_with_docker /${DIRNAME}"
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v "${CURRENT_DIR}:/${DIRNAME}" -t "piersy/docker-golang-builder:1.0" bash -c "(cd ${DIRNAME} && go build ) && sudo docker build -t golang_with_docker /${DIRNAME}"
 
 
